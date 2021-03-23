@@ -1,9 +1,10 @@
 cc_binary {
-    name: "android.hardware.usb.gadget@1.1-service-davinci",
+    name: "android.hardware.usb.gadget@1.2-service-davinci",
     defaults: ["qti_usb_hal_defaults"],
     shared_libs: [
         "android.hardware.usb.gadget@1.0",
         "android.hardware.usb.gadget@1.1",
+        "android.hardware.usb.gadget@1.2",
     ],
     static_libs: [
         "libusbconfigfs"
@@ -14,6 +15,6 @@ cc_binary {
 
     overrides: ["android.hardware.usb.gadget@1.1-service-qti"],
     required: ["usb_compositions.conf"],
-    init_rc: ["android.hardware.usb.gadget@1.1-service-davinci.rc"],
-    vintf_fragments: ["android.hardware.usb.gadget@1.1-service.xml"],
+    init_rc: ["android.hardware.usb.gadget@1.2-service-davinci.rc"],
+    vintf_fragments: ["android.hardware.usb.gadget@1.2-service.xml"],
 }

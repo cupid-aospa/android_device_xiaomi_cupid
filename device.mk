@@ -233,7 +233,7 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb.gadget@1.1-service-davinci
+    android.hardware.usb.gadget@1.2-service-davinci
 
 # Update Engine
 PRODUCT_PACKAGES += \

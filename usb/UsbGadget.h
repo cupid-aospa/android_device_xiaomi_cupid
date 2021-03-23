@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018,2020-2021, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2018,2020-2022, The Linux Foundation. All rights reserved.
  * Not a Contribution.
  *
  * Copyright (C) 2018 The Android Open Source Project
@@ -20,7 +20,8 @@
 #ifndef ANDROID_HARDWARE_USB_GADGET_V1_1_USBGADGET_H
 #define ANDROID_HARDWARE_USB_GADGET_V1_1_USBGADGET_H
 
-#include <android/hardware/usb/gadget/1.1/IUsbGadget.h>
+#include <android/hardware/usb/gadget/1.2/types.h>
+#include <android/hardware/usb/gadget/1.2/IUsbGadget.h>
 #include <hidl/Status.h>
 #include <mutex>
 
@@ -28,7 +29,7 @@ namespace android {
 namespace hardware {
 namespace usb {
 namespace gadget {
-namespace V1_1 {
+namespace V1_2 {
 namespace implementation {
 
 using ::android::hardware::Return;
@@ -46,6 +47,8 @@ struct UsbGadget : public IUsbGadget {
 
   Return<Status> reset() override;
 
+  Return<void> getUsbSpeed(const sp<V1_2::IUsbGadgetCallback> &callback) override;
+
 private:
   V1_0::Status tearDownGadget();
   V1_0::Status setupFunctions(uint64_t functions,
@@ -60,10 +63,11 @@ private:
 
   uint64_t mCurrentUsbFunctions;
   bool mCurrentUsbFunctionsApplied;
+  UsbSpeed mUsbSpeed;
 };
 
 }  // namespace implementation
-}  // namespace V1_1
+}  // namespace V1_2
 }  // namespace gadget
 }  // namespace usb
 }  // namespace hardware

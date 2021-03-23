@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2021, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2018-2022, The Linux Foundation. All rights reserved.
  * Not a Contribution.
  *
  * Copyright (C) 2018 The Android Open Source Project
@@ -17,10 +17,11 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.usb.gadget@1.1-service-davinci"
+#define LOG_TAG "android.hardware.usb.gadget@1.2-service-davinci"
 
 #include <android-base/file.h>
 #include <android-base/properties.h>
+#include <android-base/strings.h>
 #include <functional>
 #include <map>
 #include <tuple>
@@ -46,6 +47,8 @@
 #define PERSIST_VENDOR_USB_EXTRA_PROP "persist.vendor.usb.config.extra"
 #define QDSS_INST_NAME_PROP "vendor.usb.qdss.inst.name"
 #define CONFIG_STRING CONFIG_PATH "strings/0x409/configuration"
+#define UDC_PATH "/sys/class/udc/a600000.dwc3/"
+#define SPEED_PATH UDC_PATH "current_speed"
 
 #define AURA 1 << 9
 
@@ -53,7 +56,7 @@ namespace android {
 namespace hardware {
 namespace usb {
 namespace gadget {
-namespace V1_1 {
+namespace V1_2 {
 namespace implementation {
 
 using ::android::sp;
@@ -61,10 +64,12 @@ using ::android::base::GetProperty;
 using ::android::base::SetProperty;
 using ::android::base::WriteStringToFile;
 using ::android::base::ReadFileToString;
+using ::android::base::Trim;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::hardware::usb::gadget::V1_0::GadgetFunction;
+using ::android::hardware::usb::gadget::V1_0::IUsbGadgetCallback;
 using ::android::hardware::usb::gadget::V1_0::Status;
+using ::android::hardware::usb::gadget::V1_2::GadgetFunction;
 using ::android::hardware::usb::gadget::addAdb;
 using ::android::hardware::usb::gadget::kDisconnectWaitUs;
 using ::android::hardware::usb::gadget::linkFunction;
@@ -127,6 +132,40 @@ Return<Status> UsbGadget::reset() {
   }
 
   return Status::SUCCESS;
+}
+
+Return<void> UsbGadget::getUsbSpeed(const sp<V1_2::IUsbGadgetCallback> &callback) {
+    std::string current_speed;
+    if (ReadFileToString(SPEED_PATH, &current_speed)) {
+        current_speed = Trim(current_speed);
+        ALOGI("current USB speed is %s", current_speed.c_str());
+        if (current_speed == "low-speed")
+            mUsbSpeed = UsbSpeed::LOWSPEED;
+        else if (current_speed == "full-speed")
+            mUsbSpeed = UsbSpeed::FULLSPEED;
+        else if (current_speed == "high-speed")
+            mUsbSpeed = UsbSpeed::HIGHSPEED;
+        else if (current_speed == "super-speed")
+            mUsbSpeed = UsbSpeed::SUPERSPEED;
+        else if (current_speed == "super-speed-plus")
+            mUsbSpeed = UsbSpeed::SUPERSPEED_10Gb;
+        else if (current_speed == "UNKNOWN")
+            mUsbSpeed = UsbSpeed::UNKNOWN;
+        else
+            mUsbSpeed = UsbSpeed::RESERVED_SPEED;
+    } else {
+        ALOGE("Fail to read current speed");
+        mUsbSpeed = UsbSpeed::UNKNOWN;
+    }
+
+    if (callback) {
+        Return<void> ret = callback->getUsbSpeedCb(mUsbSpeed);
+
+        if (!ret.isOk())
+            ALOGE("Call to getUsbSpeedCb failed %s", ret.description().c_str());
+    }
+
+    return Void();
 }
 
 V1_0::Status UsbGadget::tearDownGadget() {
@@ -457,7 +496,7 @@ error:
   return Void();
 }
 }  // namespace implementation
-}  // namespace V1_1
+}  // namespace V1_2
 }  // namespace gadget
 }  // namespace usb
 }  // namespace hardware
@@ -467,8 +506,8 @@ int main() {
   using android::base::GetProperty;
   using android::hardware::configureRpcThreadpool;
   using android::hardware::joinRpcThreadpool;
-  using android::hardware::usb::gadget::V1_1::IUsbGadget;
-  using android::hardware::usb::gadget::V1_1::implementation::UsbGadget;
+  using android::hardware::usb::gadget::V1_2::IUsbGadget;
+  using android::hardware::usb::gadget::V1_2::implementation::UsbGadget;
 
   std::string gadgetName = GetProperty("persist.vendor.usb.controller",
       GetProperty(USB_CONTROLLER_PROP, ""));
