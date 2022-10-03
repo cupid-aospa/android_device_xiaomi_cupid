@@ -1,0 +1,12 @@
+#
+# Copyright (C) 2022 Paranoid Android
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# Fingerprint
+/dev/goodix_fp    0766   system     root
+
+# NFC
+/dev/pn553    0660    nfc               nfc
+/dev/p73      0660    secure_element    secure_element

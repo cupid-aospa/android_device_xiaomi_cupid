@@ -15,3 +15,10 @@ prebuilt_etc {
     sub_dir: "init/hw",
     vendor: true,
 }
+
+prebuilt_etc {
+    name: "ueventd.asus.rc",
+    filename: "ueventd.rc",
+    src: "ueventd.asus.rc",
+    device_specific: true,
+}

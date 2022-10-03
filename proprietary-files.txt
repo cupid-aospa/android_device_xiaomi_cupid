@@ -969,6 +969,7 @@ vendor/lib64/libfastcvdsp_stub.so
 -vendor/lib64/libfastcvopt.so
 
 # Fingerprint
+vendor/bin/gf_ver.sh
 vendor/etc/firmware/goodixfp64.b00
 vendor/etc/firmware/goodixfp64.b01
 vendor/etc/firmware/goodixfp64.b02

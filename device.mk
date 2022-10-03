@@ -121,7 +121,8 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.target.rc
+    init.target.rc \
+    ueventd.asus.rc
 
 # Keymaster
 PRODUCT_COPY_FILES += \

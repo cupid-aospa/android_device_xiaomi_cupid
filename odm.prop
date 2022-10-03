@@ -1,6 +1,9 @@
 # Bluetooth
 bluetooth.device.default_name=Zenfone 9
 
+# Fingerprint
+ro.hardware.fingerprint=goodixfp
+
 # USB
 persist.sys.usb.config=none
 vendor.usb.product_string=Zenfone 9
