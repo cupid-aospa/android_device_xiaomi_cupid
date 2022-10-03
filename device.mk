@@ -121,6 +121,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     fstab.qcom \
+    init.asus.rc \
     init.target.rc \
     ueventd.asus.rc
 
