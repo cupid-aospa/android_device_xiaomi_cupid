@@ -1,8 +1,29 @@
+# Audio
+vendor.audio.hdr.record.enable=true
+
 # Bluetooth
 bluetooth.device.default_name=Zenfone 9
+persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac-aptxadaptiver2
+persist.vendor.qcom.bluetooth.aptxadaptiver2_2_support=true
+
+# Display
+persist.sys.sf.color_mode=0
+ro.surface_flinger.set_idle_timer_ms=1500
 
 # Fingerprint
 ro.hardware.fingerprint=goodixfp
+
+# IWLAN
+persist.vendor.data.iwlan.enable=true
+
+# Radio
+persist.vendor.radio.add_power_save=1
+persist.vendor.radio.always_send_plmn=1
+persist.vendor.radio.custom_ecc=0
+persist.vendor.radio.data_ltd_sys_ind=1
+persist.vendor.radio.do_not_use_ril_optr_db=1
+persist.vendor.radio.rat_on=none
+ril.subscription.types=RUIM,RUIM
 
 # USB
 persist.sys.usb.config=none
