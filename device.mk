@@ -231,8 +231,8 @@ PRODUCT_PACKAGES += \
     android.hidl.memory.block@1.0.vendor
 
 # USB
-#PRODUCT_PACKAGES += \
-#    android.hardware.usb.gadget@1.1-service-davinci
+PRODUCT_PACKAGES += \
+    android.hardware.usb.gadget@1.1-service-davinci
 
 # Update Engine
 PRODUCT_PACKAGES += \
