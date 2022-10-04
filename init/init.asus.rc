@@ -14,10 +14,3 @@ on post-fs-data
 
 on property:sys.boot_completed=1
     write /sys/class/asuslib/boot_completed 1
-
-service vendor.secure_element_hal_service_1_2 /vendor/bin/hw/android.hardware.secure_element@1.2-service
-    override
-    disabled
-    class hal
-    user secure_element
-    group secure_element
