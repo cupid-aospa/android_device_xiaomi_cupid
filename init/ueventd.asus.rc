@@ -5,7 +5,7 @@
 #
 
 # Fingerprint
-/dev/goodix_fp    0766   system     root
+/dev/goodix_fp    0766   system    system
 
 # NFC
 /dev/pn553    0660    nfc               nfc

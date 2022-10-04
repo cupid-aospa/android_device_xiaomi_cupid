@@ -4,5 +4,13 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+on fs
+    # Fingerprint
+    chown system system /dev/goodix_fp
+
+on post-fs-data
+    # Fingerprint
+    mkdir /data/vendor/goodix 0777 system system
+
 on property:sys.boot_completed=1
     write /sys/class/asuslib/boot_completed 1

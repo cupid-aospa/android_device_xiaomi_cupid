@@ -24,6 +24,13 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "ssgqmigd.rc",
+    src: "ssgqmigd.rc",
+    sub_dir: "init",
+    vendor: true,
+}
+
+prebuilt_etc {
     name: "ueventd.asus.rc",
     filename: "ueventd.rc",
     src: "ueventd.asus.rc",

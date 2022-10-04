@@ -123,6 +123,7 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     init.asus.rc \
     init.target.rc \
+    ssgqmigd.rc \
     ueventd.asus.rc
 
 # Keymaster
@@ -147,6 +148,17 @@ PRODUCT_PACKAGES += \
 
 # NDK
 NEED_AIDL_NDK_PLATFORM_BACKEND := true
+
+# NFC
+TARGET_USES_NQ_NFC := false
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hcef.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hce.xml \
+    frameworks/native/data/etc/android.hardware.nfc.uicc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.uicc.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml
 
 # Neural Networks
 PRODUCT_PACKAGES += \
@@ -219,8 +231,8 @@ PRODUCT_PACKAGES += \
     android.hidl.memory.block@1.0.vendor
 
 # USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb.gadget@1.1-service-davinci
+#PRODUCT_PACKAGES += \
+#    android.hardware.usb.gadget@1.1-service-davinci
 
 # Update Engine
 PRODUCT_PACKAGES += \
