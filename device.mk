@@ -37,10 +37,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.pal@1.0.vendor
 
-# Biometrics
-PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service
-
 # Board
 TARGET_BOARD_PLATFORM := taro
 
@@ -93,7 +89,11 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/goodixfp.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/goodixfp.kl \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
+
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service
 
 # GPS
 PRODUCT_PACKAGES += \
