@@ -1576,6 +1576,7 @@ vendor/firmware/widevine.b07
 vendor/firmware/widevine.b08
 vendor/firmware/widevine.mbn
 vendor/firmware/widevine.mdt
+vendor/lib64/mediadrm/libwvdrmengine.so
 vendor/lib64/liboemcrypto.so
 vendor/lib64/libtrustedapploader.so
 vendor/lib64/libwvhidl.so
