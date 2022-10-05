@@ -26,5 +26,4 @@ persist.vendor.radio.rat_on=none
 ril.subscription.types=RUIM,RUIM
 
 # USB
-persist.sys.usb.config=none
 vendor.usb.product_string=Zenfone 9
