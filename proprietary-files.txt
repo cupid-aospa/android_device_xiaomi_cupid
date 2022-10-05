@@ -1058,8 +1058,6 @@ vendor/lib64/vendor.qti.hardware.factory@1.0.so
 vendor/lib64/vendor.qti.hardware.factory@1.1.so
 
 # Media
-vendor/bin/hw/qconfigservice
-vendor/etc/init/qconfig.rc
 vendor/etc/media_cape/video_system_specs.json
 vendor/etc/media_taro/video_system_specs.json
 vendor/etc/media_codecs.xml
@@ -1075,9 +1073,6 @@ vendor/etc/media_profiles.xml
 vendor/etc/media_profiles_V1_0.xml
 vendor/etc/media_profiles_cape.xml
 vendor/etc/media_profiles_taro.xml
-vendor/lib64/libqc2vppfilter.so
-vendor/lib64/libqconfigclient.so
-vendor/lib64/vendor.qti.hardware.qconfig@1.0.so
 
 # Memory
 vendor/lib64/libvmmem.so
