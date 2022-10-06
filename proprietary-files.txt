@@ -1139,11 +1139,6 @@ vendor/lib64/vendor.qti.qesdhal@1.1-impl.so
 vendor/lib64/vendor.qti.qesdhal@1.1.so
 vendor/lib64/vendor.qti.qesdsys-V1-ndk_platform.so
 
-# QDMA
-vendor/bin/qcc-trd
-vendor/etc/init/init.qdmastats.rc
-vendor/lib64/libqdma_file_agent.so
-
 # QMI
 vendor/bin/init.qti.write.sh
 vendor/bin/irsc_util
@@ -1177,8 +1172,6 @@ vendor/lib64/libsystem_health_mon.so
 vendor/bin/hw/qcrilNrd
 vendor/bin/modemManager
 vendor/bin/mstatdaemon
-vendor/bin/qtigetprop
-vendor/bin/qtisetprop
 vendor/etc/init/modemManager.rc
 vendor/etc/init/mstatdaemon.rc
 vendor/etc/init/qcrilNrd.rc
