@@ -5,6 +5,3 @@
 
 # Fingerprint
 /dev/goodix_fp    u:object_r:fingerprint_device:s0
-
-# USB
-/vendor/bin/hw/android\.hardware\.usb\.gadget\@1\.[0-2]-service-davinci    u:object_r:vendor_hal_usb_qti_exec:s0

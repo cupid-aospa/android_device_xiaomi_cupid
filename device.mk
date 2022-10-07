@@ -197,10 +197,6 @@ PRODUCT_PACKAGES += \
     android.hidl.memory.block@1.0.vendor \
     vendor.qti.hardware.systemhelper@1.0.vendor
 
-# USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb.gadget@1.2-service-davinci
-
 # Update Engine
 PRODUCT_PACKAGES += \
     update_engine_sideload
