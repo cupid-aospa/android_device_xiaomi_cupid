@@ -8,8 +8,8 @@
 
 set -e
 
-DEVICE=davinci
-VENDOR=asus
+DEVICE=cupid
+VENDOR=xiaomi
 
 # Load extract utilities and do some sanity checks.
 MY_DIR="${BASH_SOURCE%/*}"
@@ -55,9 +55,14 @@ fi
 
 function blob_fixup() {
     case "${1}" in
-        vendor/lib64/libvendor.goodix.hardware.biometrics.fingerprint@2.1.so)
-            "${PATCHELF}" --remove-needed "libhidlbase.so" "${2}"
-            sed -i "s/libhidltransport.so/libhidlbase-v32.so\x00/" "${2}"
+        vendor/etc/camera/cupid_enhance_motiontuning.xml|vendor/etc/camera/cupid_motiontuning.xml)
+            sed -i 's/xml=version/xml version/g' "${2}"
+            ;;
+        vendor/etc/camera/pureShot_parameter.xml|vendor/etc/camera/pureView_parameter.xml)
+            sed -i 's/=\([0-9]\+\)>/="\1">/g' "${2}"
+            ;;
+        vendor/etc/init/init.embmssl_server.rc)
+            sed -i -n '/interface/!p' "${2}"
             ;;
     esac
 }

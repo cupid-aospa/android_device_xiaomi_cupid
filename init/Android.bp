@@ -10,8 +10,8 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "init.asus.rc",
-    src: "init.asus.rc",
+    name: "init.xiaomi.rc",
+    src: "init.xiaomi.rc",
     sub_dir: "init",
     device_specific: true,
 }
@@ -31,8 +31,8 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "ueventd.asus.rc",
+    name: "ueventd.xiaomi.rc",
     filename: "ueventd.rc",
-    src: "ueventd.asus.rc",
+    src: "ueventd.xiaomi.rc",
     device_specific: true,
 }

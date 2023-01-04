@@ -1,0 +1,43 @@
+#
+# Copyright (C) 2022 Paranoid Android
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+on early-boot
+    setprop vendor.display.mixer_resolution ${persist.sys.miui_resolution}
+
+on boot
+    # modem
+    chmod 0777 /dev/smd8
+    chown radio radio /dev/smd8
+    
+    setprop persist.bluetooth.a2dp_offload.disabled false
+
+    #modify permission of block_size node
+    #chown -h root.oem_2902 /sys/bus/coresight/devices/coresight-tmc-etr/block_size
+    chown -h vendor_qdss /sys/bus/coresight/devices/coresight-tmc-etr/block_size
+    chmod 660 /sys/bus/coresight/devices/coresight-tmc-etr/block_size
+
+on post-fs-data
+    #Create folder of camera
+    mkdir /data/vendor/camera/offlinelog 0777 cameraserver audio
+    chmod 0666 /dev/camlog
+
+    # Create the directories used by the Wireless subsystem
+    mkdir /data/vendor/mac_addr 0770 system wifi
+
+    # Create the directory used by qrtr-lookup
+    mkdir /data/vendor/qrtr 0775 system system
+
+on property:persist.vendor.ssr.restart_level=*
+    write /sys/class/remoteproc/remoteproc4/recovery enabled
+
+on property:persist.vendor.ssr.enable_ramdumps=1
+    write /sys/class/remoteproc/remoteproc4/coredump enabled
+
+on property:sys.boot_completed=1
+    write /sys/kernel/load_guestvm_cpusys_vm/boot_guestvm 1
+
+on property:sys.boot_completed=1
+    start qrtr-lookup

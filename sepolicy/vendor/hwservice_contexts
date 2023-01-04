@@ -1,3 +1,0 @@
-# Display (Pixelworks)
-vendor.pixelworks.hardware.display::IIris           u:object_r:hal_display_iris_hwservice:s0
-vendor.pixelworks.hardware.feature::IIrisFeature    u:object_r:hal_display_iris_hwservice:s0

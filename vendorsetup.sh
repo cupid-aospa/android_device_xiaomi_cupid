@@ -5,8 +5,8 @@
 #
 
 case $TARGET_PRODUCT in
-    "aospa_davinci")
-        export ASUS_BUILD_PROJECT=AI2202
+    "aospa_cupid")
+        export TARGET_BOARD_PLATFORM=cupid
         export KERNEL_VARIANT=gki
         ;;
 esac
